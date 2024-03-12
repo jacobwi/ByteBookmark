@@ -11,7 +11,7 @@
     "web": "cd web && yarn dev",
     "chrome-extension": "cd chrome-extension && yarn dev",
     "shared": "cd shared && yarn dev",
-    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "lint": "eslint 'web/src/**/*.{js,jsx,ts,tsx}' 'shared/src/**/*.{js,jsx,ts,tsx}' 'chrome-extension/src/**/*.{js,jsx,ts,tsx}'",
     "test": "jest",
     "pretty": "prettier --write ."
   },
@@ -19,6 +19,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.18",
+    "eslint": "^8.57.0",
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1"
