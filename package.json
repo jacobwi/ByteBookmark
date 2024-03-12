@@ -11,12 +11,9 @@
     "web": "cd web && yarn dev",
     "chrome-extension": "cd chrome-extension && yarn dev",
     "shared": "cd shared && yarn dev",
-    "dev": "yarn workspaces run dev",
-    "build": "yarn workspaces run build",
-    "lint": "yarn workspaces run lint",
-    "format": "yarn workspaces run format",
-    "pretty": "prettier --write .",
-    "test": "yarn workspaces run test"
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "test": "jest",
+    "pretty": "prettier --write ."
   },
   "packageManager": "yarn@4.1.1",
   "devDependencies": {
