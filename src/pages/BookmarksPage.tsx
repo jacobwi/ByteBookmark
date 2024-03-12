@@ -17,7 +17,18 @@ export const BookmarksPage = () => {
     new Set(categories.map((category) => category.name)),
   );
   if (bookmarks.length === 0) {
-    return <div>No bookmarks found</div>;
+    return (
+      <div className="flex items-center justify-center h-screen w-full">
+        <div className="text-center">
+          <p className="text-xl md:text-2xl lg:text-3xl text-gray-800 font-semibold">
+            No bookmarks found
+          </p>
+          <p className="text-md text-gray-600 mt-2">
+            You haven't added any bookmarks yet.
+          </p>
+        </div>
+      </div>
+    );
   }
   return (
     <div className="flex flex-col h-full p-4 bg-theme-card-bg rounded-lg shadow-theme-card">
@@ -76,7 +87,7 @@ export const BookmarksPage = () => {
                 <img
                   className="w-10 h-10 rounded-lg"
                   src={
-                    `data:image/jpeg;base64,${bookmark.image.base64Data}` ||
+                    `data:image/jpeg;base64,${bookmark.image?.base64Data}` ||
                     "https://via.placeholder.com/40"
                   }
                   alt="Favicon"

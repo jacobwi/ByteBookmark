@@ -1,5 +1,10 @@
-import { MemoryRouter as Router, Routes, Route } from "react-router-dom";
-import { LoginPage, HomePage, SignupPage } from "shared/ui";
+import {
+  MemoryRouter as Router,
+  Routes,
+  Route,
+  NavLink,
+} from "react-router-dom";
+import { LoginPage, SignupPage } from "shared/ui";
 import { ProtectedRoute } from "shared/routes";
 import { AuthProvider } from "shared/contexts/AuthContext";
 import { BookmarkProvider } from "shared/contexts/BookmarkContext";
@@ -14,8 +19,8 @@ import {
 } from "react-icons/io5";
 import SettingsPage from "../SettingsPage";
 import { BookmarksPage } from "../BookmarksPage";
-import { NavIcon } from "../../components/NavIcon";
 import AddBookmarkPage from "../AddBookmarkPage";
+import HomePage from "../HomePage";
 
 export default function Popup(): JSX.Element {
   return (
@@ -162,27 +167,47 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
       {/* Content Area with Padding for Bottom Nav */}
-      <div className="flex-grow overflow-auto pb-16">{children}</div>{" "}
-      {/* Adjust padding bottom (pb-16) based on the height of your bottom navigation */}
+      <div className="flex-grow overflow-auto pb-20">{children}</div>
       {/* Bottom Navigation Bar */}
       <div className="flex justify-around p-2 bg-white shadow fixed bottom-0 left-0 right-0">
-        <NavIcon
-          icon={<IoAddCircleOutline size={24} />}
-          label="Add"
-          isSpecial
-          to="/bookmarks/add"
-        />
-        <NavIcon icon={<IoHomeOutline size={24} />} label="Home" to="/" />
-        <NavIcon
-          icon={<IoBookmarkOutline size={24} />}
-          label="Bookmarks"
-          to="/bookmarks"
-        />
-        <NavIcon
-          icon={<IoSettingsOutline size={24} />}
-          label="Settings"
-          to="/settings"
-        />
+        {[
+          {
+            icon: <IoAddCircleOutline size={24} />,
+            label: "Add",
+            to: "/bookmarks/add",
+            end: true,
+          },
+          {
+            icon: <IoHomeOutline size={24} />,
+            label: "Home",
+            to: "/",
+            end: true,
+          },
+          {
+            icon: <IoBookmarkOutline size={24} />,
+            label: "Bookmarks",
+            to: "/bookmarks",
+            end: true,
+          },
+          {
+            icon: <IoSettingsOutline size={24} />,
+            label: "Settings",
+            to: "/settings",
+            end: true,
+          },
+        ].map((item, index) => (
+          <NavLink
+            key={index}
+            to={item.to}
+            end={item.end}
+            className={({ isActive }) =>
+              `flex flex-col items-center text-gray-600 hover:text-theme-accent transition-colors duration-150 ease-in-out ${isActive ? "text-theme-accent" : ""}`
+            }
+          >
+            {item.icon}
+            <span className="text-xs">{item.label}</span>
+          </NavLink>
+        ))}
       </div>
     </div>
   );
