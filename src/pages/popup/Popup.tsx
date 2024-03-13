@@ -3,11 +3,11 @@ import {
   Routes,
   Route,
   NavLink,
-} from "react-router-dom";
-import { LoginPage, SignupPage } from "shared/ui";
-import { ProtectedRoute } from "shared/routes";
-import { AuthProvider } from "shared/contexts/AuthContext";
-import { BookmarkProvider } from "shared/contexts/BookmarkContext";
+} from 'react-router-dom';
+import { LoginPage, SignupPage } from '@shared/ui';
+import { ProtectedRoute } from '@shared/routes';
+import { AuthProvider } from '@shared/contexts/AuthContext';
+import { BookmarkProvider } from '@shared/contexts/BookmarkContext';
 import {
   IoHomeOutline,
   IoSettingsOutline,
@@ -16,13 +16,13 @@ import {
   IoClose,
   IoRemove,
   IoSquareOutline,
-} from "react-icons/io5";
-import SettingsPage from "../SettingsPage";
-import { BookmarksPage } from "../BookmarksPage";
-import AddBookmarkPage from "../AddBookmarkPage";
-import HomePage from "../HomePage";
+} from 'react-icons/io5';
+import SettingsPage from '../SettingsPage';
+import { BookmarksPage } from '../BookmarksPage';
+import AddBookmarkPage from '../AddBookmarkPage';
+import HomePage from '../HomePage';
 
-export default function Popup(): JSX.Element {
+export const Popup = () => {
   return (
     <AuthProvider>
       <BookmarkProvider>
@@ -94,7 +94,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   const handleMinimize = () => {
     // Implement the minimize functionality, this might be specific to your application or platform
-    console.log("Minimize window");
+    console.log('Minimize window');
   };
 
   const handleExport = () => {
@@ -112,18 +112,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       chrome.windows.create(
         {
           url: popupUrl,
-          type: "popup", // Or 'normal', depending on your preference
+          type: 'popup', // Or 'normal', depending on your preference
           focused: true,
           width: document.documentElement.scrollWidth + 10,
           height: document.documentElement.scrollHeight + 30,
         },
-        (newWindow) => {
-          console.log("New window opened:", newWindow);
+        newWindow => {
+          console.log('New window opened:', newWindow);
           window.close(); // Close the current popup window
-        },
+        }
       );
     } else {
-      console.error("Popup path not found in manifest.");
+      console.error('Popup path not found in manifest.');
     }
   };
 
@@ -173,26 +173,26 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {[
           {
             icon: <IoAddCircleOutline size={24} />,
-            label: "Add",
-            to: "/bookmarks/add",
+            label: 'Add',
+            to: '/bookmarks/add',
             end: true,
           },
           {
             icon: <IoHomeOutline size={24} />,
-            label: "Home",
-            to: "/",
+            label: 'Home',
+            to: '/',
             end: true,
           },
           {
             icon: <IoBookmarkOutline size={24} />,
-            label: "Bookmarks",
-            to: "/bookmarks",
+            label: 'Bookmarks',
+            to: '/bookmarks',
             end: true,
           },
           {
             icon: <IoSettingsOutline size={24} />,
-            label: "Settings",
-            to: "/settings",
+            label: 'Settings',
+            to: '/settings',
             end: true,
           },
         ].map((item, index) => (
@@ -201,7 +201,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             to={item.to}
             end={item.end}
             className={({ isActive }) =>
-              `flex flex-col items-center text-gray-600 hover:text-theme-accent transition-colors duration-150 ease-in-out ${isActive ? "text-theme-accent" : ""}`
+              `flex flex-col items-center text-gray-600 hover:text-theme-accent transition-colors duration-150 ease-in-out ${isActive ? 'text-theme-accent' : ''}`
             }
           >
             {item.icon}

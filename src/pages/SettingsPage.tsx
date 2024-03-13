@@ -1,20 +1,20 @@
-import { useSettings } from "@src/contexts/SettingsContext";
-import { version, author, description } from "../../package.json";
+import { useSettings } from '@src/contexts/SettingsContext';
+import { version, author, description } from '../../package.json';
 
 import {
   IoCloudUploadOutline,
   IoCloudDownloadOutline,
   IoLogOutOutline,
-} from "react-icons/io5";
-import { useAuth } from "shared/hooks";
-import { Position } from "shared/models";
+} from 'react-icons/io5';
+import { useAuth } from '@shared/hooks';
+import { Position } from '@shared/models';
 import {
   Button,
   CollapsiblePanel,
   InputField,
   Select,
   ToggleSwitch,
-} from "shared/ui";
+} from '@shared/ui';
 
 const SettingsPage = () => {
   const {
@@ -30,8 +30,8 @@ const SettingsPage = () => {
     setApiUrl,
   } = useSettings();
   const { logout } = useAuth();
-  const themeOptions = ["Light", "Dark"];
-  const defaultPopupViewOptions = ["Home", "Bookmarks", "Add Bookmark"];
+  const themeOptions = ['Light', 'Dark'];
+  const defaultPopupViewOptions = ['Home', 'Bookmarks', 'Add Bookmark'];
 
   const handleLogout = () => {
     logout();
@@ -39,13 +39,13 @@ const SettingsPage = () => {
 
   const handleImport = () => {
     // Implement the import bookmarks functionality here
-    console.log("Importing bookmarks...");
+    console.log('Importing bookmarks...');
     // e.g., open a file picker, parse the bookmarks file, add bookmarks to storage, etc.
   };
 
   const handleExport = () => {
     // Implement the export bookmarks functionality here
-    console.log("Exporting bookmarks...");
+    console.log('Exporting bookmarks...');
     // e.g., fetch all bookmarks from storage, convert them to a file format, prompt user to download the file, etc.
   };
 
@@ -61,14 +61,14 @@ const SettingsPage = () => {
           id="theme"
           options={themeOptions}
           value={theme}
-          onChange={(value) => setTheme(value)}
+          onChange={value => setTheme(value)}
         />
         <Select
           label="Default Popup View"
           id="defaultPopupView"
           options={defaultPopupViewOptions}
           value={defaultPopupView}
-          onChange={(value) => setDefaultPopupView(value)}
+          onChange={value => setDefaultPopupView(value)}
         />
         <ToggleSwitch
           label="Auto Save"
@@ -82,7 +82,7 @@ const SettingsPage = () => {
           type="text"
           placeholder="Enter default tag"
           value={autoAddTag}
-          onChange={(e) => setAutoAddTag(e.target.value)}
+          onChange={e => setAutoAddTag(e.target.value)}
         />
         <InputField
           label="API URL"
@@ -90,7 +90,7 @@ const SettingsPage = () => {
           type="url"
           placeholder="Enter API endpoint"
           value={apiUrl}
-          onChange={(e) => setApiUrl(e.target.value)}
+          onChange={e => setApiUrl(e.target.value)}
         />
       </div>
 

@@ -1,33 +1,33 @@
-import { InputField } from "shared/ui";
-import { useEffect, useState } from "react";
-import { useBookmarks } from "shared/hooks";
+import { InputField } from '@shared/ui';
+import { useEffect, useState } from 'react';
+import { useBookmarks } from '@shared/hooks';
 
 const AddBookmarkPage = () => {
-  const [url, setUrl] = useState("");
-  const [name, setName] = useState("");
+  const [url, setUrl] = useState('');
+  const [name, setName] = useState('');
   const [pageImage, setPageImage] = useState(null); // State for storing the screenshot
   const { addBookmark } = useBookmarks();
   useEffect(() => {
     // Get the current active tab
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
       const currentTab = tabs[0];
       if (!currentTab) {
-        console.error("No active tab found.");
+        console.error('No active tab found.');
         return;
       }
-      setUrl(currentTab.url ?? "");
-      setName(currentTab.title ?? "");
+      setUrl(currentTab.url ?? '');
+      setName(currentTab.title ?? '');
 
       // Request a screenshot from the background script for the current tab
       chrome.runtime.sendMessage(
-        { action: "captureTab", tabId: currentTab.id },
-        (response) => {
+        { action: 'captureTab', tabId: currentTab.id },
+        response => {
           if (response.error) {
-            console.error("Error capturing tab:", response.error);
+            console.error('Error capturing tab:', response.error);
           } else {
             setPageImage(response.screenshotUrl);
           }
-        },
+        }
       );
     });
   }, []);
@@ -37,17 +37,17 @@ const AddBookmarkPage = () => {
 
     if (pageImage) {
       // Convert Base64 string to a Blob
-      const imageBlob = await fetch(pageImage).then((res) => res.blob());
+      const imageBlob = await fetch(pageImage).then(res => res.blob());
 
       // Create FormData object
       const formData = new FormData();
-      formData.append("title", name);
-      formData.append("url", url);
-      formData.append("description", ""); // Assuming you might want to add a description field
+      formData.append('title', name);
+      formData.append('url', url);
+      formData.append('description', ''); // Assuming you might want to add a description field
 
       // Append the Blob image under the key 'image',
       // you can also include a filename if necessary
-      formData.append("image", imageBlob, "screenshot.png");
+      formData.append('image', imageBlob, 'screenshot.png');
     }
 
     // Use the FormData object with your addBookmark function
@@ -76,7 +76,7 @@ const AddBookmarkPage = () => {
           type="text"
           placeholder="Enter bookmark name"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
         />
 
         <InputField
@@ -85,7 +85,7 @@ const AddBookmarkPage = () => {
           type="url"
           placeholder="URL will be auto-populated"
           value={url}
-          onChange={(e) => setUrl(e.target.value)}
+          onChange={e => setUrl(e.target.value)}
           editable={false}
         />
 

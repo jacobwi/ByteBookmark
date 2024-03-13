@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import { useBookmarks } from "shared/hooks"; // Update the path to where your BookmarkContext is defined
+import { useEffect, useState } from 'react';
+import { useBookmarks } from '@shared/hooks';
 
 export const BookmarksPage = () => {
   const { bookmarks, refreshBookmarks, tags, categories } = useBookmarks();
-  const [viewType, setViewType] = useState("latest");
-  const [selectedTag, setSelectedTag] = useState("Work");
-  const [selectedCategory, setSelectedCategory] = useState("Development");
+  const [viewType, setViewType] = useState('latest');
+  const [selectedTag, setSelectedTag] = useState('Work');
+  const [selectedCategory, setSelectedCategory] = useState('Development');
 
   useEffect(() => {
     refreshBookmarks(); // This will fetch bookmarks according to your context implementation
   }, [refreshBookmarks, viewType, selectedTag, selectedCategory]);
 
   // Extract unique tags and categories from bookmarks data for filter options
-  const uniqueTags = Array.from(new Set(tags.map((tag) => tag.name)));
+  const uniqueTags = Array.from(new Set(tags.map(tag => tag.name)));
   const uniqueCategories = Array.from(
-    new Set(categories.map((category) => category.name)),
+    new Set(categories.map(category => category.name))
   );
   if (bookmarks.length === 0) {
     return (
@@ -38,7 +38,7 @@ export const BookmarksPage = () => {
           {/* View type selection (Latest, Tag, Category) */}
           <select
             value={viewType}
-            onChange={(e) => setViewType(e.target.value)}
+            onChange={e => setViewType(e.target.value)}
             className="p-2 rounded-lg bg-theme-input-bg text-theme-input-text border-theme-border"
           >
             <option value="latest">Latest</option>
@@ -47,13 +47,13 @@ export const BookmarksPage = () => {
           </select>
 
           {/* Tag selection */}
-          {viewType === "tag" && (
+          {viewType === 'tag' && (
             <select
               value={selectedTag}
-              onChange={(e) => setSelectedTag(e.target.value)}
+              onChange={e => setSelectedTag(e.target.value)}
               className="p-2 rounded-lg bg-theme-input-bg text-theme-input-text border-theme-border"
             >
-              {uniqueTags.map((tag) => (
+              {uniqueTags.map(tag => (
                 <option key={tag} value={tag}>
                   {tag}
                 </option>
@@ -62,13 +62,13 @@ export const BookmarksPage = () => {
           )}
 
           {/* Category selection */}
-          {viewType === "category" && (
+          {viewType === 'category' && (
             <select
               value={selectedCategory}
-              onChange={(e) => setSelectedCategory(e.target.value)}
+              onChange={e => setSelectedCategory(e.target.value)}
               className="p-2 rounded-lg bg-theme-input-bg text-theme-input-text border-theme-border"
             >
-              {uniqueCategories.map((category) => (
+              {uniqueCategories.map(category => (
                 <option key={category} value={category}>
                   {category}
                 </option>
@@ -80,7 +80,7 @@ export const BookmarksPage = () => {
 
       {/* Bookmarks list */}
       <ul role="list" className="divide-y divide-theme-border">
-        {bookmarks.map((bookmark) => (
+        {bookmarks.map(bookmark => (
           <li key={bookmark.id} className="py-4">
             <div className="flex items-center space-x-4">
               <div className="flex-shrink-0">
@@ -88,7 +88,7 @@ export const BookmarksPage = () => {
                   className="w-10 h-10 rounded-lg"
                   src={
                     `data:image/jpeg;base64,${bookmark.image?.base64Data}` ||
-                    "https://via.placeholder.com/40"
+                    'https://via.placeholder.com/40'
                   }
                   alt="Favicon"
                 />

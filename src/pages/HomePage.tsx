@@ -2,24 +2,24 @@ import {
   IoLogoClosedCaptioning,
   IoBookmarks,
   IoPricetags,
-} from "react-icons/io5";
-import { useBookmarks } from "shared/hooks";
+} from 'react-icons/io5';
+import { useBookmarks } from '@shared/hooks';
 
 const HomePage = () => {
   const { bookmarks, categories, tags } = useBookmarks();
   const stats = [
     {
-      title: "Tags",
+      title: 'Tags',
       count: tags.length,
       icon: <IoPricetags className="text-green-500" size={32} />,
     },
     {
-      title: "Bookmarks",
+      title: 'Bookmarks',
       count: bookmarks.length,
       icon: <IoBookmarks className="text-red-500" size={32} />,
     },
     {
-      title: "Categories",
+      title: 'Categories',
       count: categories.length,
       icon: <IoLogoClosedCaptioning className="text-blue-500" size={32} />,
     },
