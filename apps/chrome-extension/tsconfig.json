@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": ["vite/client", "chrome", "webextension-polyfill", "jest"],
+
+    "paths": {
+      "@bookmarks/shared/*": ["../../packages/shared/src/*"]
+    }
+  },
+  "include": ["src", "types/globals.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
+}

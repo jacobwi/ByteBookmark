@@ -1,0 +1,22 @@
+{
+  "name": "@bytebookmarks/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "packageManager": "pnpm@8.15.5",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.3"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "@types/chrome": "^0.0.263",
+    "@types/webextension-polyfill": "^0.10.7",
+    "vite-plugin-environment": "^1.1.3"
+  }
+}

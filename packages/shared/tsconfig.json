@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "lib",
+    "baseUrl": ".", // Base URL should be the root of the `shared` package
+    "paths": {
+      "@shared/assets": ["./src/assets"],
+      "@shared/contexts": ["./src/contexts"],
+      "@shared/hooks": ["./src/hooks"],
+      "@shared/ui": ["./src/ui"],
+      "@shared/utils": ["./src/utils"],
+      "@shared/services": ["./src/services"],
+      "@shared/models": ["./src/models"],
+      "@shared/routes": ["./src/routes"]
+    }
+  },
+  "include": ["src"]
+}
