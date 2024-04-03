@@ -1,6 +1,0 @@
-{
-  "extends": "./tsconfig.json", // Extend from your main tsconfig
-  "compilerOptions": {
-    "jsx": "react-jsx" // Or "react" for React <17
-  }
-}

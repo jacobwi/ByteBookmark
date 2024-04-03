@@ -21,11 +21,11 @@
     "noFallthroughCasesInSwitch": true,
 
     /* Types */
-    "types": ["vite/client", "chrome", "webextension-polyfill", "jest"],
+    "types": ["vite/client", "chrome", "webextension-polyfill"],
 
     "baseUrl": ".", // Important for resolving non-relative paths
     "paths": {
-      "@shared/*": ["../shared/src/*"],
+      "@bytemarks/shared/*": ["../shared/src/*"],
       "@src/*": ["src/*"],
       "@assets/*": ["src/assets/*"],
       "@pages/*": ["src/pages/*"]
